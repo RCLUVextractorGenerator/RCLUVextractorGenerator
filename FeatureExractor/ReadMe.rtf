@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww23600\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ==============================\
+ Getting Started with Feature-Extractor\
+==============================\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Feature-Extractor requires Python and TXL to extract RCLUV from \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Step 1: Install TXL from http://txl.ca/txl-download.html\
+\
+Step 2: Install Python from https://www.python.org/downloads/ (
+\f1\fs22 \cf2 \CocoaLigature0 Python 3.6.4 or higher version preferred
+\f0\fs24 \cf0 \CocoaLigature1 )\
+\
+Step 3: Setup the Config file -\
+There are 3 config files in the config folder\
+\
+	1: RCLUV.cfg - *no* project specific changes are needed in this file. This file is used for the tool internal mechanism.\
+\
+	2: user.cfg - This requires two changes depending on the user requirements.\
+		1) RCLUVproject - specify the project path\
+			eg: "Projects/brew-master"\
+				the final feature-extracted CSV file will be generated in \'93Projects/\'93 path\
+		2) RCLUVprojectFiles - specify all the file extensions for which the feature should be extracted. If there are multiple types of file needs to be analyzed separate the file extensions with \'91|\'92 symbol.\
+			eg: '.*\\.(java)' \
+				'.*\\.(java|rb)'\
+				'.*\\.(java|rb|c)\'92\
+\
+	3: Pythonconfig.json - This primarily requires 3 config change depending on the user requirements. \
+		1) Level - Depth of the context\
+		2) OnlyLUV - \'93True\'94 would extract only Language Use Vector and \'93False\'94 would extract Rich Contextualized Language Use Vector.\
+		3) IgnoreNonTerminals - If any non-terminal needs to be manually skipped, can be specified in below format.\
+			eg: "IgnoreNonTerminals": "['abc','xyz']"\
+\
+Step 4: Place the language grammar in TXL folder\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Step 5: Place the target project in Project folder or any folder as specified in \'93RCLUVproject\'94 in user.cfg\
+\
+Step 6: Open Terminal and navigate to FeatureExractor folder\
+\
+Step 7: run ./GenerateRCLUV\
+\
+Step 8: once the command completes the feature extraction process the CSV file can be found in \'93Project\'94 folder or any folder as specified in \'93RCLUVproject\'94 in user.cfg\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0     }

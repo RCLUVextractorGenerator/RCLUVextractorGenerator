@@ -1,0 +1,22 @@
+#!/bin/bash
+. config/RCLUV.cfg
+. config/user.cfg
+
+ulimit -s hard 7340032
+
+FILECOUNT=0
+for file in $(find $RCLUVinput -type f -name "*.grm" -or -name "*.Grm" -or -name "*Grammar" -or -name "*.grammar"); do
+    let FILECOUNT=FILECOUNT+1
+    TXLfile=$(echo "$file" | cut -f 1 -d '.')
+    TXLfile=$TXLfile$".txl"
+	txl -q $file $RCLUVTXL -s 1000 > "Temp/temp.grm"
+done
+if [ $FILECOUNT != 1 ] ; then
+    echo "More than one input Grammar loaded in the input stack. Please process a single Language grammar."
+    exit 1
+fi
+
+python3 $RCLUVScript
+
+echo $TXLfile
+$RCLUVAnalyze $RCLUVproject $TXLfile

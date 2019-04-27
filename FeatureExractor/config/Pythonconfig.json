@@ -1,0 +1,7 @@
+{
+    "RCLUVinput": "TXL",
+    "Level": 4,
+    "RCLUVrefinedTXL": "Temp/temp.grm",
+    "OnlyLUV": "False",
+    "IgnoreNonTerminals": "['abc','xyz']"
+}

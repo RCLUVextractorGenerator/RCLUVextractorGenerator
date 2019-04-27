@@ -1,0 +1,25 @@
+#!/bin/bash
+
+. config/user.cfg
+. config/RCLUV.cfg
+
+ulimit -s hard 10000000
+
+IFS=$'\n'
+
+echo -n > "$1".RCLUVanalysis
+
+echo "Compiling " ${2}
+txl -c -q ${2} -s 2000
+
+for i in $(find -E "$1" -regex $RCLUVprojectFiles); do
+    echo -n "."
+    echo "===" "$i" "===" >> "$1".RCLUVanalysis
+    txl -l -q "${i}" ${2} -s 2000 > /dev/null  2>> "${1}".RCLUVanalysis
+done
+
+# Convert result to spreadsheet
+ruby $RCLUV2CSV < "$1".RCLUVanalysis > "$1".RCLUVanalysis.csv
+
+echo "Done."
+echo "Output in $1.RCLUVanalysis, $1.RCLUVanalysis.csv"
